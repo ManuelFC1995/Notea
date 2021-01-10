@@ -1,25 +1,53 @@
-<ion-header>
 
+<ion-header clear color="primary">
+  <div style="text-align: center; ">
+    <h1 clear color="primary">NOTEA</h1>
+  </div>
 </ion-header>
 
 <ion-content >
-  <ion-list>
-
-    <ion-item>
-      <ion-input type="text" placeholder="Username"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input type="password" placeholder="Password"></ion-input>
-    </ion-item>
-  
-  </ion-list>
-<ion-button  clear color="primary" expand="full" ><ion-icon name="logo-facebook"></ion-icon>Login </ion-button>
  
+
+
+  
+  
+  <div style="background-color:honeydew; ">
+  <ion-card>
+ 
+   
+   
   
 
+  
+    <ion-card-content>
+   
+    </ion-card-content>
+  
+    <ion-row>
+    
+    
+     
+    </ion-row>
+    <div style="text-align: center; ">
+    <p> No esta registrado? Registrese</p>     
+     <ion-button fill="outline" slot="end"     (click)="this.Registro()" >Registrarse</ion-button>
+    </div>
+    <br>
+    <ion-button  clear color="secondary" expand="full" ><ion-icon name="logo-facebook"></ion-icon>Login whit Facebook </ion-button>
  
-  <ion-button clear color="warning" expand="full" (click)="this.login()"> <ion-icon name="logo-google"></ion-icon>     Login whith Google</ion-button>
+  <br>
+
+ 
+    <ion-button clear color="warning" expand="full" (click)="this.login()"> <ion-icon name="logo-google"></ion-icon>     Login whith Google</ion-button>
+    <br>
+    <div style="text-align: center;">
+<p>¿Has olvidado tu contraseña?</p>
+    </div>
+    <div style="text-align: center;">
+    <ion-button  color="dark"><ion-icon name="logo-google-playstore"></ion-icon>Consiguela en la <br> APP STORE</ion-button>
+  </div>
+  </ion-card>
+  </div>
 
   
 </ion-content>

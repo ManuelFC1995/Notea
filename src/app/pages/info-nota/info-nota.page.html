@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar clear color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi Nota</ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+<br>
+<br>
+<ion-content>
+  <ion-card clear color="light">
+    <ion-card-header>  <div style=" text-align: right;">
+      <ion-icon name="receipt-outline"></ion-icon></div>
+      <div style=" font-weight: bold;font-size: x-large;">
+      <ion-card-title>{{this.nota.titulo}}</ion-card-title>
+      </div>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{this.nota.texto}}
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

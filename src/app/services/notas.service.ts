@@ -3,6 +3,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
 import { Nota } from '../model/nota';
 import { AuthService } from './auth.service';
 
@@ -10,30 +11,32 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class NotasService {
-  public user = {
-    token: -1,
-    name: '',
-    
-    avatar: ''
-  }
+ 
   private myCollection:AngularFirestoreCollection<any>;
 
   constructor(private google:GooglePlus,
     private authS:AuthService,private fire:AngularFirestore) { 
-    this.myCollection=fire.collection<any>(environment.notasColletion);
+      this.myCollection=fire.collection<any>(environment.userCollection).doc(this.authS.getUser().userId).collection(environment.notasColletion);
   }
      
-  ngOnInit(){
+ /* ngOnInit(){
     if(this.authS.isLogged){
 this.user=this.authS.user;
     }
   }
+*/
 
+loadCollection(){
+  this.myCollection=this.fire.collection<any>(environment.userCollection).doc(this.authS.getUser().userId).collection(environment.notasColletion);
+}
   agregaNota(nuevaNota:Nota ):Promise<any>{
-    let id =this.user.token ;
+   
     return this.myCollection.add(nuevaNota);
   }
   leeNotas():Observable<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>>{
+    return this.myCollection.get();
+  }
+  leeNotas10():Observable<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>>{
     return this.myCollection.get();
   }
   leeNota(id:any):Observable<any>{ 
@@ -44,6 +47,8 @@ this.user=this.authS.user;
     console.log(nuevaNota)
     return this.myCollection.doc(id).update({titulo:nuevaNota.titulo,texto:nuevaNota.texto});
   }
+
+ 
   borraNota(id:any):Promise<void>{
     return this.myCollection.doc(id).delete();
   }
@@ -51,4 +56,6 @@ this.user=this.authS.user;
   leeNotasPorCriterio(){
     //Por implementar
   }
+
+
 }

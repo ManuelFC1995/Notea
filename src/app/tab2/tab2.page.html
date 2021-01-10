@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar clear color="primary" >
     <ion-title>
       Añadir Tarea
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+<br>
 <ion-content [fullscreen]="true">
   <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
     <ion-item>
@@ -13,6 +13,7 @@
       formControlName="title"
       placeholder="Título"></ion-input>
     </ion-item>
+    <br>
     <ion-item>
       <ion-textarea 
       formControlName="description"
@@ -21,6 +22,7 @@
       auto-grow="true"></ion-textarea>
     </ion-item>
     <div style="text-align: right;">
+      <br>
       <ion-button 
       shape="round"
       color="primary"

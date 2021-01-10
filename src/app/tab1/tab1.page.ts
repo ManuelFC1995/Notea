@@ -7,6 +7,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { LoadingService } from '../services/loading.service';
+import { InfoNotaPage } from '../pages/info-nota/info-nota.page';
 
 @Component({
   selector: 'app-tab1',
@@ -16,23 +18,19 @@ import { AlertController } from '@ionic/angular';
 export class Tab1Page{
 
   public listaNotas = [];
-
+textoBuscar='';
   constructor(private notasS: NotasService,
     private modalController:ModalController,
     private nativeStorage: NativeStorage,
     private authS:AuthService,
     private router:Router,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private LoadingS:LoadingService) { }
 
-  public async logout(){
-    await this.authS.logout();
-    if(!this.authS.isLogged()){
-      this.router.navigate(['/login'])
-    }
-  }
 
-  ngOnInit(){
+  ngOnInit(){  
     this.cargaDatos();
+   
     this.nativeStorage.setItem('myitem', {property: 'value', anotherProperty: 'anotherValue'})
   .then(
     () => console.log('Stored item!'),
@@ -41,11 +39,15 @@ export class Tab1Page{
   }
 
   ionViewDidEnter() {
-    //Mostrar el loading
     
+    this.notasS.loadCollection();
+    this.cargaDatos();
+ 
   }
-  public cargaDatos($event=null){
+  public  cargaDatos($event=null){
+   
     try {
+     
       this.notasS.leeNotas()
         .subscribe((info:firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>) => {
           //Ya ha llegado del servidor
@@ -56,10 +58,12 @@ export class Tab1Page{
               ...doc.data()
             }
             this.listaNotas.push(nota);
+          
           });
-          //Ocultar el loading
+       
           console.log(this.listaNotas);
           if($event){
+        
             $event.target.complete();
           }
         })
@@ -93,6 +97,16 @@ export class Tab1Page{
     });
     return await modal.present();
   }
+  public async infoNota(nota:Nota){
+    const modal = await this.modalController.create({
+      component: InfoNotaPage,
+      cssClass: 'my-custom-class',
+      componentProps:{
+        nota:nota
+      }
+    });
+    return await modal.present();
+  }
 
    async presentAlertConfirmDelete(id:any) {
   
@@ -119,6 +133,19 @@ export class Tab1Page{
       await alert.present();
       let result = await alert.onDidDismiss();
       console.log(result);
+    }
+
+    Buscar(event){
+this.textoBuscar=event.detail.value;
+    }
+
+    LoadNotas(event){
+
+setTimeout(()=>{
+this.cargaDatos;
+event.Target.complete();
+},100);
+
     }
    }
 

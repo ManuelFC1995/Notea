@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -18,6 +18,10 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AuthService } from './services/auth.service';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { PipesModule } from './pipes/pipes.module';
+import { LoadingService } from './services/loading.service';
+import { Flashlight } from '@ionic-native/flashlight/ngx';
+//import { Flashlight } from '@ionic-native/flashlight/ngx';
 
 @NgModule({
   declarations: [AppComponent,EditNotaPage],
@@ -28,7 +32,9 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+   
+    
   ],
   providers: [
     StatusBar,
@@ -38,7 +44,10 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
     GooglePlus,
     AuthService,
     Camera,
+    PipesModule,
     WebView,
+    LoadingService,
+    Flashlight,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

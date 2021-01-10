@@ -21,6 +21,7 @@
     "@angular/router": "~10.0.0",
     "@ionic-native/camera": "^5.30.0",
     "@ionic-native/core": "^5.0.0",
+    "@ionic-native/flashlight": "^5.30.0",
     "@ionic-native/google-plus": "^5.30.0",
     "@ionic-native/ionic-webview": "^5.30.0",
     "@ionic-native/native-storage": "^5.30.0",
@@ -47,7 +48,9 @@
     "cordova-android": "^9.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-camera": "^5.0.1",
+    "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-flashlight": "^3.2.0",
     "cordova-plugin-googleplus": "^8.5.1",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
@@ -83,7 +86,8 @@
       },
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      },
+      "cordova-plugin-flashlight": {}
     },
     "platforms": [
       "browser",

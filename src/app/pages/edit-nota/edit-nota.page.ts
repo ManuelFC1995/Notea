@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { Nota } from 'src/app/model/nota';
 import { NotasService } from 'src/app/services/notas.service';
@@ -20,7 +22,7 @@ export class EditNotaPage{
     private notasS:NotasService,
     public loadingController: LoadingController,
     public toastController: ToastController,
-    private modalController:ModalController
+    private modalController:ModalController, private webView: WebView, private camera:Camera,
   ) {
     this.tasks=this.formBuilder.group({
       title:['',Validators.required],
@@ -29,7 +31,8 @@ export class EditNotaPage{
   }
   ionViewDidEnter(){
     this.tasks.get('title').setValue(this.nota.titulo);
-    this.tasks.get('description').setValue(this.nota.texto)
+    this.tasks.get('description').setValue(this.nota.texto);
+  
   }
 
   public async sendForm(){
@@ -52,6 +55,8 @@ export class EditNotaPage{
     })
   }
 
+
+
   async presentLoading() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
@@ -65,7 +70,7 @@ export class EditNotaPage{
       message: msg,
       color:col,
       duration: 2000,
-      position:"top"
+      position:"middle"
     });
   
     toast.present();

@@ -3,6 +3,9 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
+
+import * as firebase from 'firebase';
+import {  ActivatedRoute } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,9 +14,13 @@ export class AuthService implements CanActivate {
   public user = {
     token: -1,
     name: '',
-    
-    avatar: ''
+    userId:'',
+    avatar: '',
+    Email:''
+
   }
+
+  
 
   constructor(private storage: NativeStorage,
     private google: GooglePlus,
@@ -45,8 +52,9 @@ export class AuthService implements CanActivate {
     this.user = {
       token: -1,
       name: '',
- 
-      avatar: ''
+      userId:'',
+      avatar: '',
+      Email:''
     }
     await this.storage.setItem("user",this.user);
   }
@@ -59,8 +67,9 @@ export class AuthService implements CanActivate {
         this.user = {
           token: u['accessToken'],
           name: u['displayName'],
-        
-          avatar: u['imageUrl']
+          userId:u['userId'],
+          avatar: u['imageUrl'],
+          Email: u['email']
         }
         console.log(this.user);
       }
@@ -68,7 +77,9 @@ export class AuthService implements CanActivate {
       this.user = {
         token: -1,
         name: '',
-        avatar: ''
+        avatar: '',
+        userId:'',
+        Email:''
       }
     }
     await this.storage.setItem("user",this.user);
@@ -83,4 +94,10 @@ export class AuthService implements CanActivate {
     }
     return true;
   }
+
+  getUser(){
+    return this.user;
+  }
+
+  
 }
