@@ -29,26 +29,26 @@
      
     </ion-row>
     <div style="text-align: center; ">
-    <p> No esta registrado? Registrese</p>     
-     <ion-button fill="outline" slot="end"     (click)="this.Registro()" >Registrarse</ion-button>
+    <p> {{'No esta registrado? Registrese' | translate}}</p>     
+     <ion-button fill="outline" slot="end"     (click)="this.Registro()" >{{'Registrarse' | translate}}</ion-button>
     </div>
     <br>
-    <ion-button  clear color="secondary" expand="full" ><ion-icon name="logo-facebook"></ion-icon>Login whit Facebook </ion-button>
+    <ion-button  clear color="secondary" expand="full" >
+      <ion-icon name="logo-facebook"></ion-icon>{{'Entra con Facebook ' | translate}}</ion-button>
  
   <br>
 
  
-    <ion-button clear color="warning" expand="full" (click)="this.login()"> <ion-icon name="logo-google"></ion-icon>     Login whith Google</ion-button>
+    <ion-button clear color="warning" expand="full" (click)="this.login()"> <ion-icon name="logo-google"></ion-icon>  {{'   Entra con Google ' | translate}}</ion-button>
     <br>
     <div style="text-align: center;">
-<p>¿Has olvidado tu contraseña?</p>
+<p>{{'¿Has olvidado tu contraseña?' | translate}}</p>
     </div>
     <div style="text-align: center;">
-    <ion-button  color="dark"><ion-icon name="logo-google-playstore"></ion-icon>Consiguela en la <br> APP STORE</ion-button>
+    <ion-button  color="dark"><ion-icon name="logo-google-playstore"></ion-icon>{{'Consiguela en la' | translate}} <br> APP STORE</ion-button>
   </div>
   </ion-card>
   </div>
 
   
 </ion-content>
-

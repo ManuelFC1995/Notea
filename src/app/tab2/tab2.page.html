@@ -1,7 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar clear color="primary" >
     <ion-title>
-      Añadir Tarea
+     {{ 'Añadir Nota' | translate}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+<ion-header [translucent]="true">
+  <ion-toolbar clear color="primary" >
+    <ion-title>
+    {{'  Añadir ' | translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,13 +19,13 @@
     <ion-item>
       <ion-input type="text" 
       formControlName="title"
-      placeholder="Título"></ion-input>
+      placeholder="title"></ion-input>
     </ion-item>
     <br>
     <ion-item>
       <ion-textarea 
       formControlName="description"
-      placeholder="Descripción"
+      placeholder="Description"
       autocapitalize="true"
       auto-grow="true"></ion-textarea>
     </ion-item>
@@ -28,7 +36,7 @@
       color="primary"
       fill="outline"
       type="submit"
-      [disabled]="!tasks.valid">Añadir</ion-button>
+      [disabled]="!tasks.valid">{{'Añadir' | translate}}</ion-button>
   </div>
   </form>
 </ion-content>

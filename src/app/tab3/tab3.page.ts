@@ -6,6 +6,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -14,6 +15,7 @@ import { AlertController } from '@ionic/angular';
 export class Tab3Page {
   image: string;
   DarkMode:boolean;
+  langs: string[] = [];
   public user = {
     token: -1,
     name: '',
@@ -21,12 +23,11 @@ export class Tab3Page {
     avatar: ''
   }
   constructor(private google:GooglePlus,  private webView: WebView, private camera:Camera,
-    private authS:AuthService,private router:Router
-    ,
+    private authS:AuthService,private router:Router ,public  translate: TranslateService,
     private flash:Flashlight,
     public alertController: AlertController
     ) {
-
+      this.langs = this.translate.getLangs();
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
       this.DarkMode=prefersDark.matches;
     }
@@ -129,5 +130,9 @@ this.flash.switchOff();
   CambioTema(){
     this.DarkMode=!this.DarkMode;
 document.body.classList.toggle('dark');
+  }
+
+  changeLang(event) {
+    this.translate.use(event.detail.value);
   }
 }

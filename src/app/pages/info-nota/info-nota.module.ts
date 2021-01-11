@@ -7,12 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { InfoNotaPageRoutingModule } from './info-nota-routing.module';
 
 import { InfoNotaPage } from './info-nota.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule,TranslateModule,
     InfoNotaPageRoutingModule
   ],
   declarations: [InfoNotaPage]
