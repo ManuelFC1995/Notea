@@ -11,5 +11,6 @@ export const environment = {
         measurementId: "G-7X2PVY1L39"
       },
       notasColletion:'Notas',
-      userCollection:"Users"
+      userCollection:"Users",
+      timemaxloading:10000,  //Tiempo máximo que puede estar cargando la aplicación, supera deja de cargar y muestra error en carga
   };

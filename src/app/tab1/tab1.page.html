@@ -4,7 +4,7 @@
     <ion-toolbar clear color="primary" >
       <ion-title >
         
-      {{' Mis Notas' | translate}}
+      {{'Mis Notas' | translate}}
       </ion-title>
     
     
@@ -14,9 +14,15 @@
   
   <ion-content [fullscreen]="true" style="background-color: lightblue;">
     <ion-refresher slot="fixed" (ionRefresh)="this.cargaDatos($event)">
-      <ion-refresher-content></ion-refresher-content>
+     
+      <ion-refresher-content
+      pulling-icon="null"
+      pulling-text="Cargando Notas"
+      refreshing-spinner="null"
+      refreshing-text="Refreshing...">
+    </ion-refresher-content>
     </ion-refresher>
-  
+    
      <ion-list  >
        <ion-item-sliding *ngFor="let nota of this.listaNotas | filtro:textoBuscar ; let i=index  ">
          <ion-item-options side="start">
@@ -30,12 +36,14 @@
         <ion-item clear color="medium" >
       
           <ion-label    (click)="this.infoNota(nota)">
+          
             <div style=" display: inline;">
-         <h2><div style=" font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: larger; ">  <div style="color:gray">   {{    nota.titulo}}</div></div> <div style="color:seagreen; float:right ; font-style: initial; "> <ion-icon name="paper-plane-outline"></ion-icon>.{{i+1}}</div></h2>
+             
+         <h2><div style=" font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: larger; ">  <div style="color:gray">   {{    nota.titulo}}</div></div> <div style="color:rgb(179, 184, 189); float:right ; font-style: initial; "> <ion-icon name="paper-plane-outline"></ion-icon>.{{i+1}}</div></h2>
         </div>
           
           </ion-label>
-      
+          
         </ion-item>
   
         <ion-item-options side="end">
@@ -46,11 +54,6 @@
          </ion-item-options>
        </ion-item-sliding>
      </ion-list>
-   
-     <ion-infinite-scroll threshold="130px" (ionInfinite)="LoadNotas($event)" id="infinite-scroll">
-      <ion-infinite-scroll-content
-        loading-spinner="crescent"
-        loading-text="Cargando Notas...">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+ 
+ 
   </ion-content>

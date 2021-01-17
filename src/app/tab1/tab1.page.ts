@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { LoadingService } from '../services/loading.service';
 import { InfoNotaPage } from '../pages/info-nota/info-nota.page';
-
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -25,7 +26,7 @@ textoBuscar='';
     private authS:AuthService,
     private router:Router,
     public alertController: AlertController,
-    private LoadingS:LoadingService) { }
+    private LoadingS:LoadingService,private vibration: Vibration,public  translate: TranslateService) { }
 
 
   ngOnInit(){  
@@ -44,34 +45,44 @@ textoBuscar='';
     this.cargaDatos();
  
   }
-  public  cargaDatos($event=null){
-   
+
+  public  async cargaDatos($event=null){
+  
+    await this.LoadingS.presentLoading();
+
     try {
-     
+      this.LoadingS.loadingController.dismiss();
       this.notasS.leeNotas()
         .subscribe((info:firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>) => {
           //Ya ha llegado del servidor
+         
           this.listaNotas=[];
           info.forEach((doc)=>{
             let nota={
               id:doc.id,
               ...doc.data()
             }
-            this.listaNotas.push(nota);
+       
+            this.LoadingS.loadingController.dismiss();
+ this.listaNotas.push(nota);
+          
           
           });
-       
+     
           console.log(this.listaNotas);
           if($event){
         
             $event.target.complete();
+         
           }
         })
     } catch (err) {
       //Error
     }
   }
-  public borraNota(id:any){
+  public async borraNota(id:any){
+    await this.LoadingS.presentLoading();
+    this.LoadingS.loadingController.dismiss();
     this.notasS.borraNota(id)
     .then(()=>{
       //ya está borrada allí
@@ -82,9 +93,12 @@ textoBuscar='';
         }
       })
       this.listaNotas=tmp;
+      this.LoadingS.loadingController.dismiss();
+      this.vibration.vibrate(1000);
     })
     .catch(err=>{
-
+      this.LoadingS.loadingController.dismiss();
+      this.vibration.vibrate(1000);
     })
   }
   public async editaNota(nota:Nota){
@@ -111,19 +125,20 @@ textoBuscar='';
    async presentAlertConfirmDelete(id:any) {
   
       const alert = await this.alertController.create({
-        header: 'Atención!',
-        message: 'Seguro que desea <strong>Borrar</strong> la nota ',
+        header:  this.translate.instant("Atención!"),
+        message: this.translate.instant("Seguro que desea Borrar la nota?"),
         buttons: [
           {
-            text: 'Cancelar',
+            text: this.translate.instant("cancelar"),
             role: 'cancel',
             cssClass: 'secondary',
             handler: (blah) => {
               console.log('Confirm Cancel: blah');
             }
           }, {
-            text: 'Borrar',
+            text:  this.translate.instant("Borrar"),
             handler: () => {
+              
               this.borraNota(id);
             }
           }
@@ -142,7 +157,7 @@ this.textoBuscar=event.detail.value;
     LoadNotas(event){
 
 setTimeout(()=>{
-this.cargaDatos;
+this.cargaDatos()
 event.Target.complete();
 },100);
 

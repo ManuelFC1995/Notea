@@ -14,7 +14,7 @@ import { NotasService } from '../services/notas.service';
 })
 export class Tab2Page {
   public tasks:FormGroup;
-  image: string;
+  image: string="";
   constructor(
     private LoadingS:LoadingService,
     private formBuilder:FormBuilder,
@@ -34,7 +34,8 @@ export class Tab2Page {
     let data:Nota={
       titulo:this.tasks.get('title').value,
       texto:this.tasks.get('description').value,
-   
+     
+
     }
     this.notasS.agregaNota(data)
     .then((respuesta)=>{

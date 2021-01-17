@@ -27,11 +27,11 @@
         </ion-fab>
       </ion-content>
       <ion-avatar >
-        <img *ngIf="image" [src]="image" alt="image" >
+        <img  src={{user.avatar}}  >
      <!--  <img *ngIf="image" src={{user.avatar}} -->
       </ion-avatar>
 
-    
+    <br>    <br> 
   
     </ion-card-header>
   
@@ -66,8 +66,8 @@
 
 
 
-     <ion-item>
-      <ion-label>Language</ion-label>
+     <ion-item clear color="light">
+      <ion-label >{{'Lenguaje' | translate}}</ion-label>
       <ion-select value="brown" ok-text="Okay" cancel-text="Dismiss" (ionChange)="changeLang($event)">
         <ion-select-option *ngFor="let lang of langs" [value]="lang">
           {{ lang }}

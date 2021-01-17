@@ -19,7 +19,6 @@ export class Tab3Page {
   public user = {
     token: -1,
     name: '',
-    
     avatar: ''
   }
   constructor(private google:GooglePlus,  private webView: WebView, private camera:Camera,
@@ -52,7 +51,7 @@ console.log("");
   }
 
   ChangeAvatar(){
-
+this.user.avatar=this.image;
   }
 
 Linterna(event){
@@ -74,10 +73,12 @@ this.flash.switchOff();
     };
     this.camera.getPicture(options)
     .then((imageData) => {
-      this.image = this.webView.convertFileSrc(imageData);
+      this.user.avatar = this.webView.convertFileSrc(imageData);
     }, (err) => {
       console.log(err);
     });
+
+  
   }
   takeGallery() {
     const options: CameraOptions = {
@@ -89,17 +90,18 @@ this.flash.switchOff();
     };
     this.camera.getPicture(options)
     .then((imageData) => {
-      this.image = this.webView.convertFileSrc(imageData);
+      this.user.avatar= this.webView.convertFileSrc(imageData);
     }, (err) => {
       console.log(err);
     });
+    this.ChangeAvatar();
   }
 
   async presentAlertFotos() {
   
     const alert = await this.alertController.create({
-      header: 'Atención!',
-      message: 'Seguro que desea <strong>Borrar</strong> la nota ',
+      header: 'Avatar',
+      message: 'Elija una opcion ',
       buttons: [
         {
           text: 'Cancelar',
@@ -112,11 +114,13 @@ this.flash.switchOff();
           text: 'Camara',
           handler: () => {
             this.takePicture();
+          
           }
         },{
           text: 'Galeria',
           handler: () => {
             this.takeGallery();
+          
           }
         }
       ]
@@ -126,6 +130,8 @@ this.flash.switchOff();
     let result = await alert.onDidDismiss();
     console.log(result);
   }
+
+  
 
   CambioTema(){
     this.DarkMode=!this.DarkMode;

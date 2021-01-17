@@ -12,7 +12,7 @@
     "Sobre Notea":"Sobre Notea",
     "Configuracíon":"Configuracíon",
     "Añadir":"Añadir",
-    " Añadir Nota":"Añadir Nota",
+    "Añadir Nota":"Añadir Nota",
     "Mis Notas":"Mis Notas",
 
     "Editar Nota":"Editar Nota", 
@@ -22,7 +22,10 @@
     "Perfil":"Perfil",
     "Salir":"Salir",
   "Lenguaje":"Lenguaje",
-  "Descripcion":"Descripcion"
+  "Atención!":"Atención!",
+  "Seguro que desea Borrar la nota?":"Seguro que desea Borrar la nota?",
+  "cancelar": "cancelar",
+  "Borrar":"Borrar"
   
 
 }

@@ -12,7 +12,7 @@
     "Sobre Notea":"About Notea",
     "Configuracíon":"Settings",
     "Añadir":"Add",
-    " Añadir Nota":"Add Note",
+    "Añadir Nota":"Add Note",
     "Mis Notas":"My Notes",
 
     "Editar Nota":"Edit Note", 
@@ -20,8 +20,11 @@
     "Mi Nota":"My Note",
     "Notas":"Notes",
     "Perfil":"Profile"
-  , "Lenguaje":"Languaje",
-  "Descripcion":"Description"
-
+  , "Lenguaje":"Languaje"
+  ,
+  "Atención!":"Atentión!",
+  "Seguro que desea Borrar la nota?":"Are you shuere to Delete this Note?",
+  "cancelar": "cancel",
+  "Borrar":"Delete"
 }
 
